@@ -102,6 +102,25 @@ namespace Verko_Autoservice
             UpdateServices();
         }
 
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new EditAddPage(null));
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                VerkoAutoserviceEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                ServiceListView.ItemsSource = VerkoAutoserviceEntities.GetContext().Service.ToList();
+            }
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new EditAddPage((sender as Button).DataContext as Service));
+        }
+
         /*private void Button_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new EditAddPage());

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Verko_Autoservice"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ServicePage">
+      Title="Услуги автосервиса" FontFamily="Tw Cen MT" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -24,11 +24,11 @@
                 <TextBlock Text=" Выберите название для поиска " TextAlignment="Right" Width="300" FontSize="20"></TextBlock>
                 <ComboBox Name="ComboType" SelectionChanged="ComboType_SelectionChanged" FontSize="15" Width="200">
                     <TextBlock>Все</TextBlock>
-                    <TextBlock> от 0 до 5% </TextBlock>
-                    <TextBlock> от 5 до 15% </TextBlock>
-                    <TextBlock> от 15 до 30% </TextBlock>
-                    <TextBlock> от 30 до 70% </TextBlock>
-                    <TextBlock> от 70 до 100% </TextBlock>
+                    <TextBlock> от 0 до 5%</TextBlock>
+                    <TextBlock> от 5 до 15%</TextBlock>
+                    <TextBlock> от 15 до 30%</TextBlock>
+                    <TextBlock> от 30 до 70%</TextBlock>
+                    <TextBlock> от 70 до 100%</TextBlock>
                 </ComboBox>
             </StackPanel>
         </WrapPanel>
@@ -36,7 +36,9 @@
             <RadioButton Content="По возрастанию стоимости" GroupName="Sort" Width="300" FontSize="20" Name="RButtonUp" Checked="RButtonUp_Checked"></RadioButton>
             <RadioButton Content="По убыванию стоимости" GroupName="Sort" Width="300" FontSize="20" Name="RButtonDown" Checked="RButtonDown_Checked"></RadioButton>
         </StackPanel>
-        
+
+        <Button Content="Добавить" Name="AddButton" Click="AddButton_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
+
         <ListView Name="ServiceListView" Grid.Row="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -50,18 +52,18 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions> 
-                        
+                        </Grid.RowDefinitions>
+
                         <Image Width="100" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center">
-                        <Image.Source>
+                            <Image.Source>
                                 <Binding Path="MainImagePath">
                                     <Binding.TargetNullValue>
                                         <ImageSource>
                                             ress/service_logo.png
                                         </ImageSource>
-                                </Binding.TargetNullValue>
-                                    </Binding>
-                        </Image.Source>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
                         </Image>
 
                         <TextBlock Text="{Binding Title}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap"></TextBlock>
@@ -70,15 +72,15 @@
                         <TextBlock Text="{Binding Discount, StringFormat=*скидка {0} % }" Opacity="{Binding Discount}" Margin="5" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16"></TextBlock>
 
                         <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
-                            <Button Name="EditButton" Content="редактировать" Margin="2"></Button>
+                            <Button Name="EditButton" Content="редактировать" Margin="2" Click="EditButton_Click"></Button>
                             <Button Name="DeleteButton" Content="удалить" Margin="2"></Button>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
 
-           
+
         </ListView>
-        
+
     </Grid>
 </Page>
