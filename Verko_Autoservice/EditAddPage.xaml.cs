@@ -45,7 +45,7 @@ namespace Verko_Autoservice
             if (_currentService.Cost <= 0)
                 errors.AppendLine("Укажите стоимость услуги");
 
-            if (DiscountTextBox.Text.Length < 1 || (_currentService.Discount > 100 || _currentService.Discount < 0) )
+            if (DiscountTextBox.Text.Length < 1 || (_currentService.DiscountInt > 100 || _currentService.DiscountInt < 0) )
                 errors.AppendLine("Укажите возможную скидку");
 
             if (string.IsNullOrWhiteSpace(_currentService.Duration))
