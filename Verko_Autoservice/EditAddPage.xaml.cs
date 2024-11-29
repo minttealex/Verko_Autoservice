@@ -48,8 +48,11 @@ namespace Verko_Autoservice
             if (DiscountTextBox.Text.Length < 1 || (_currentService.DiscountInt > 100 || _currentService.DiscountInt < 0) )
                 errors.AppendLine("Укажите возможную скидку");
 
-            if (string.IsNullOrWhiteSpace(_currentService.Duration))
+            if (_currentService.Duration <= 0)
                 errors.AppendLine("Укажите длительность услуги");
+
+            if (_currentService.Duration > 240 || _currentService.Duration < 0)
+                errors.AppendLine("Длительность не может быть меньше 0 или больше 240 минут");
 
             if (errors.Length > 0)
             {
@@ -57,18 +60,28 @@ namespace Verko_Autoservice
                 return;
             }
 
-            if (_currentService.ID == 0)
-                VerkoAutoserviceEntities.GetContext().Service.Add(_currentService);
+            var allServices = VerkoAutoserviceEntities.GetContext().Service.ToList();
+            allServices = allServices.Where(p => p.Title == _currentService.Title && p.ID != _currentService.ID).ToList();
 
-            try
+            if (allServices.Count == 0)
             {
-                VerkoAutoserviceEntities.GetContext().SaveChanges();
-                MessageBox.Show("Информация сохранена");
-                Manager.MainFrame.GoBack();
+                if (_currentService.ID == 0)
+                    VerkoAutoserviceEntities.GetContext().Service.Add(_currentService);
+
+                try
+                {
+                    VerkoAutoserviceEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Информация сохранена");
+                    Manager.MainFrame.GoBack();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Уже существует такая услуга");
             }
         }
     }

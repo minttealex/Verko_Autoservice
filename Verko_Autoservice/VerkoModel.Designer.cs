@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "D:\3 курс исп\ИСП-3122\Верко А.Н\Verko_Autoservice\Verko_Autoservice\VerkoModel.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\ASUS\Source\Repos\Verko_Autoservice\Verko_Autoservice\VerkoModel.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.
