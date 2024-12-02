@@ -71,7 +71,7 @@ namespace Verko_Autoservice
             {
                 if (Discount > 0)
                 {
-                    return ((decimal)Cost - (decimal)Cost * (decimal)Discount/100);
+                    return ((decimal)Cost - (decimal)Cost * (decimal)Discount);
                 }
                 else
                 {
